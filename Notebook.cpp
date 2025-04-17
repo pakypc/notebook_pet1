@@ -1,25 +1,15 @@
+#
 #include <iostream>
 #include <stdio.h>
 #include <cstring>
 #include <iomanip>
-
-#define MAX  128
+#include "definitions.h"
+#include "print.h"
+#include "changeList.h"
+#include "find.h"
 
 using std::cin; using std::cout; 
 using std::endl; using std::string;
-
-struct Date {
-    int day;
-    int month;
-    int year;
-};
-
-struct Person {
-    char secondName[MAX];
-    char name[MAX];
-    char telefon[MAX];
-    Date birthday;
-};
 
 void razbor(char *str, Person &kontakt)
 {
@@ -36,18 +26,6 @@ void razbor(char *str, Person &kontakt)
     kontakt.birthday.month = atoi(part);
     part = strtok(NULL, "\n");
     kontakt.birthday.year = atoi(part);
-}
-
-void printList(Person *list, int n)
-{
-    cout << "Содержание записной книжки: \n";
-    for (int i = 0; i < n; ++i) {
-        cout<<list[i].secondName<<" "<<list[i].name<<" тел.: "<<list[i].telefon;
-        cout << "\n\t" << std::setw(2) << std::setfill('0') << list[i].birthday.day
-            << "." << std::setw(2) << std::setfill('0')<< list[i].birthday.month 
-            << "." << list[i].birthday.year << "\n";
-    }
-    cout << endl;
 }
 
 int menu ()
@@ -68,31 +46,6 @@ int menu ()
     }
     cout << endl;
     return k;
-}
-
-void addContact(Person *list, int n)
-{
-    cout << "Добавление контакта\n";
-}
-
-void delContact(Person *list, int n)
-{
-    cout << "Удаление контакта\n";
-}
-
-void  printSort(Person *list, int n) 
-{
-	cout << "Сортировка по фамилии\n";
-}
-
-void findContact(Person *list, int n) 
-{
-	cout << "Поиск по фамилии\n";
-}
-
-void findBirthdays(Person *list, int n) 
-{
-	cout << "Поиск именинников\n";
 }
 
 void finish(Person *list, int n) {
