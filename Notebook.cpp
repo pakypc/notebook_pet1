@@ -50,6 +50,25 @@ int menu ()
 
 void finish(Person *list, int n) {
 	cout << "Завершение работы\n";
+    cout << "Сохранить в файл текущие контакты? (Y/N) ";
+    char ch;
+    cin >> ch;
+    if (ch == 'y' || ch == 'Y') {
+        FILE* output = fopen("data.txt", "w");
+        if (output == NULL) {
+            cout << "Ошибка открытия файла для чтения\n";
+            return;
+        }
+        fprintf(output, "%d\n", n);
+        for (int i = 0; i < n; ++i) {
+            fprintf(output, "%s;%s;%s;%d/%d/%d\n", list[i].secondName, list[i].name,
+                    list[i].telefon, list[i].birthday.day, list[i].birthday.month,
+                    list[i].birthday.year);
+        }
+         if (fclose(output) != 0) {
+             cout << "Ошибка Закрытия файла для записи\n";
+        }
+    }
 }
 
 int main ()
