@@ -7,15 +7,20 @@
 using std::cout; 
 using std::endl;
 
+void print (Person* item)
+{
+    cout << item->secondName << " " << item->name << " тел.: " << item->telefon;
+    cout << "\n\t" << std::setw(2) << std::setfill('0') << item->birthday.day
+        << "." << std::setw(2) << std::setfill('0')<< item->birthday.month 
+        << "." << item->birthday.year << "\n";
+}
+
 void printList(Person *list, int n)
 {
     cout << "Содержание записной книжки: \n";
     for (int i = 0; i < n; ++i) {
-        cout<<list[i].secondName<<" "<<list[i].name<<" тел.: "<<list[i].telefon;
-        cout << "\n\t" << std::setw(2) << std::setfill('0') << list[i].birthday.day
-            << "." << std::setw(2) << std::setfill('0')<< list[i].birthday.month 
-            << "." << list[i].birthday.year << "\n";
-    }
+        print (&list[i]);
+   }
     cout << endl;
 }
 
@@ -39,10 +44,7 @@ void  printSort(Person *list, int n)
     }
     //вывод на консоль
     for (int i = 0; i < n; ++i) {
-        cout<<ptr[i]->secondName<<" "<<ptr[i]->name<<" тел.: "<<ptr[i]->telefon;
-        cout << "\n\t" << std::setw(2) << std::setfill('0') << ptr[i]->birthday.day
-            << "." << std::setw(2) << std::setfill('0')<< ptr[i]->birthday.month 
-            << "." << ptr[i]->birthday.year << "\n";
+        print (ptr[i]);
     }
     cout << endl;
 
